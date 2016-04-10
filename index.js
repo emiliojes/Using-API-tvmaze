@@ -9,7 +9,7 @@ $(function() {
 			var busqueda = $(this)
 				.find('input[type="text"]')
 				.val();
-			alert('Se ha buscado: ' + busqueda)
+			alert('Se ha buscado: ' + busqueda);
 		})
 
 	var template = '<article class="tv-show">' +
@@ -24,8 +24,19 @@ $(function() {
 
 	$.ajax({
 		url: 'http://api.tvmaze.com/shows',
-		success: function (data, textStatus, xhr) {
-			console.log(data)
+		success: function (shows, textStatus, xhr) {
+			var $tvShowContainer = $('#app-body').find('.tv-shows')
+			shows.forEach(function(show){
+				var article = template
+					.replace(':name:', show.name)
+					.replace(':img:', show.image.medium)
+					.replace(':summary:', show.summary)
+					.replace(':img alt:', show.name + " Logo")
+
+				
+					$tvShowContainer.append($(article))
+
+			})
 		}
 	})
 })
