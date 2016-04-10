@@ -54,12 +54,10 @@ $(function() {
 					'</div>' +
 				'</article>';
 
-	$.ajax({
-		url: 'http://api.tvmaze.com/shows',
-		success: function (shows, textStatus, xhr) {
-		$tvShowContainer.find('.tv-show').remove();		
+		$.ajax('http://api.tvmaze.com/shows')
+		.then(function (shows){
+			$tvShowContainer.find('.tv-show').remove();		
 			renderShows(shows);
-			
-		}
-	})
+		})
+				
 })
