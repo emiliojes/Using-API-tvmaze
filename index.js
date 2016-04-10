@@ -54,10 +54,17 @@ $(function() {
 					'</div>' +
 				'</article>';
 
-		$.ajax('http://api.tvmaze.com/shows')
-		.then(function (shows){
-			$tvShowContainer.find('.tv-show').remove();		
+		if (!localStorage.shows) {
+			$.ajax('http://api.tvmaze.com/shows')
+			.then(function (shows){
+			$tvShowContainer.find('.tv-show').remove();
+			localStorage.shows = JSON.stringify(shows);		
 			renderShows(shows);
 		})
+
+		} else {
+			renderShows(JSON.parse(localStorage.shows));
+		}
+		
 				
 })
