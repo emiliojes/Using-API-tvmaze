@@ -12,6 +12,15 @@ $(function() {
 			alert('Se ha buscado: ' + busqueda)
 		})
 
+	var template = '<article class="tv-show">' +
+					'<div class="left">' +
+					'<img src=":img:" alt=":img alt:">'+
+					'</div>' +
+					'<div class="left info">' +
+						'<h1>:name:</h1>' +
+						'<p>:summary:</p>' +
+					'</div>' +
+				'</article>';
 
 	$.ajax({
 		url: 'http://api.tvmaze.com/shows',
