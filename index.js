@@ -26,6 +26,7 @@ $(function() {
 		url: 'http://api.tvmaze.com/shows',
 		success: function (shows, textStatus, xhr) {
 			var $tvShowContainer = $('#app-body').find('.tv-shows')
+			$tvShowContainer.find('.loader').remove();
 			shows.forEach(function(show){
 				var article = template
 					.replace(':name:', show.name)
