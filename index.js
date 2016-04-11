@@ -2,6 +2,14 @@ $(function() {
 
 	var $tvShowContainer = $('#app-body').find('.tv-shows')
 
+	$tvShowContainer.on('click', 'button.like', function (ev) {
+		var $this = $(this);
+		$this.closest('.tv-show').toggleClass('liked')
+//		$this.animate({
+//			'fontSize': '30px'
+//		},	'fast');
+	})
+
 	function renderShows(shows) {
 		$tvShowContainer.find('.loader').remove();	
 		shows.forEach(function(show){
@@ -11,7 +19,8 @@ $(function() {
 				.replace(':summary:', show.summary)
 				.replace(':img alt:', show.name + " Logo")
 			var $article = $(article)
-			$tvShowContainer.append($article.fadeIn(1500));
+			$article.hide();
+			$tvShowContainer.append($article.fadeIn('slow'));
 		})
 	}
 
@@ -50,6 +59,7 @@ $(function() {
 					'<div class="left info">' +
 						'<h1>:name:</h1>' +
 						'<p>:summary:</p>' +
+						'<button class="like">💖</button>'+
 					'</div>' +
 				'</article>';
 
